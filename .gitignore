@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+backend/.env
+backend/vendor
+backend/tweetscrubber
+
