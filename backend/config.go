@@ -5,13 +5,16 @@ import (
 	"go.uber.org/zap"
 )
 
-type config struct {
+type cfg struct {
 	TwitterApiKey      string `env:"TWITTER_API_KEY"`
 	TwitterApiSecret   int    `env:"TWITTER_API_SECRET"`
 	TwitterBearerToken string `env:"TWITTER_BEARER_TOKEN"`
+	TwitterClientID    string `env:"TWITTER_CLIENT_ID"`
+	TwitterRedirectURI string `env:"TWITTER_REDIRECT_URI`
 }
 
 var logger *zap.SugaredLogger
+var config cfg
 
 func initLogging() {
 	logConfig, _ := zap.NewProduction()
@@ -20,8 +23,8 @@ func initLogging() {
 }
 
 func initEnv() error {
-	cfg := config{}
-	if err := env.Parse(&cfg); err != nil {
+	config = cfg{}
+	if err := env.Parse(&config); err != nil {
 		return err
 	}
 
